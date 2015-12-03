@@ -36,10 +36,10 @@ module.exports = function(grunt) {
     responsive_images: {
       resize: {
         options: {
-          quality: 70,
+          quality: 60,
           sizes: [{
             suffix: '_small',
-            width: 320
+            width: 115
           },{
             suffix: '_medium',
             width: 618
@@ -63,6 +63,35 @@ module.exports = function(grunt) {
         }
       },
     },
+    sass: {                             // Task
+      dev: {                            // Target
+        options: {                       // Target options
+          outputStyle: 'compressed',
+          sourcemap: 'auto'
+        },
+        files: {                         // Dictionary of files
+           // 'destination': 'source'
+        }
+      },
+      dist: {
+        options: {
+          outputStyle: 'compressed',
+          sourcemap: 'auto'
+        },
+        files: {                         // Dictionary of files
+          'css/style.css': 'sass/style.scss',
+           // 'destination': 'source'
+        }
+      }
+    },
+    postcss: {
+      options: {
+        map: true // inline sourcemaps
+      },
+      dist: {
+        src: '*.css'
+      }
+    },
     watch: {
       scripts: {
         files: [
@@ -79,6 +108,10 @@ module.exports = function(grunt) {
         options: {
             livereload: true
         }
+      },
+      css: {
+        files: ['**/*.scss'],
+        tasks: ['sass']
       }
     },
     watchForProduction: {
@@ -111,6 +144,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-responsive-images');
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-postcss');
 
   // Default task(s).
   grunt.registerTask('default', [

@@ -29,15 +29,33 @@ form {
   font-weight: 800;
 }
 
+#movingPizzas1 {
+  will-change: ;
+}
+
 .mover {
   position: fixed;
-  width: 256px;
+  left: 0;
+  height: 100px;
+  width: 73.333px;
+  /*will-change: left;*/
+  transform: translate3d(0,0,0);
   z-index: -1;
 }
 
 .randomPizzaContainer {
   float: left;
   display: flex;
+  height: 325px;
+  width: 33.33%;
+}
+
+.small .randomPizzaContainer {
+  width: 25%;
+}
+
+.large .randomPizzaContainer {
+  width: 50%;
 }
 
 .randomPizzaContainer:after {
