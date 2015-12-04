@@ -66,7 +66,7 @@ module.exports = function(grunt) {
     sass: {                             // Task
       dev: {                            // Target
         options: {                       // Target options
-          outputStyle: 'compressed',
+          outputStyle: 'expanded',
           sourcemap: 'auto'
         },
         files: {                         // Dictionary of files
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
       },
       dist: {
         options: {
-          outputStyle: 'compressed',
+          outputStyle: 'expanded',
           sourcemap: 'auto'
         },
         files: {                         // Dictionary of files
@@ -90,6 +90,16 @@ module.exports = function(grunt) {
       },
       dist: {
         src: '*.css'
+      }
+    },
+    inline: {
+      dist: {
+        options:{
+          cssmin: true,
+          uglify: true
+        },
+        src: 'index.html',
+        dest: 'prod/index.html'
       }
     },
     watch: {
@@ -146,12 +156,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-inline');
 
   // Default task(s).
   grunt.registerTask('default', [
     'connect',
     'watch'
     ]);
+
+  grunt.registerTask('inlineJSCSS', ['inline']);
 
   grunt.registerTask('hint', ['jshint']);
 
