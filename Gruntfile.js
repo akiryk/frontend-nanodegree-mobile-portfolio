@@ -150,7 +150,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-processhtml');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-responsive-images');
@@ -172,12 +171,5 @@ module.exports = function(grunt) {
     'responsive_images',
     ]);
 
-  grunt.registerTask('build', [
-    'connect',
-    'sass',
-    'watchForProduction',
-    'processhtml',
-    'uglify'
-    ]);
 
 };
